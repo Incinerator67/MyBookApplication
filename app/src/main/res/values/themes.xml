@@ -7,6 +7,17 @@
         <item name="colorOnPrimary">@color/dark_blue</item>
         <!-- Secondary brand color -->
         <item name="colorOnSecondary">@color/black</item>
+
+
     </style>
+
+    <style name="Theme.MyBook.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MyBook.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MyBook.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

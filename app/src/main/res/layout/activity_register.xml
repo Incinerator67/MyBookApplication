@@ -4,90 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
+    tools:context=".Activities.RegisterActivity"
     android:background="@drawable/bg">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="150dp"
+            android:layout_marginTop="50dp"
             android:text="Sign up now!"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:layout_marginTop="50dp"/>
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+            android:textColor="@color/white" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border"
+            android:layout_height="287dp"
             android:layout_marginStart="30dp"
+            android:layout_marginTop="-20dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginTop="50dp"
+            android:background="@drawable/border"
             android:padding="15dp">
+
             <EditText
                 android:id="@+id/editText_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="20dp"
-                android:padding="6dp"
                 android:background="@drawable/border"
                 android:hint="Name"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName"
+                android:padding="6dp" />
+
             <EditText
                 android:id="@+id/editText_register_email"
-                android:layout_below="@id/editText_register_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_below="@id/editText_register_name"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:padding="6dp"
                 android:background="@drawable/border"
                 android:hint="Email"
-                android:inputType="textEmailAddress"/>
+                android:inputType="textEmailAddress"
+                android:padding="6dp" />
+
             <EditText
                 android:id="@+id/editText_register_pwd"
-                android:layout_below="@id/editText_register_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_below="@id/editText_register_email"
                 android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
-                android:padding="6dp"
                 android:background="@drawable/border"
                 android:hint="Password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword"
+                android:padding="6dp" />
+
             <ImageView
                 android:id="@+id/imageView_show_hide_pwd"
-                android:layout_below="@id/editText_register_email"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
+                android:layout_below="@id/editText_register_email"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:layout_alignParentRight="true"/>
+                android:layout_marginEnd="25dp" />
+
             <Button
                 android:id="@+id/button_register"
-                android:layout_below="@id/editText_register_pwd"
                 android:layout_width="177dp"
                 android:layout_height="40dp"
+                android:layout_below="@id/editText_register_pwd"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="50dp"
                 android:background="@color/light_orange"
                 android:text="Sign up"
                 android:textColor="@color/white" />
+
             <ProgressBar
                 android:id="@+id/ProgressBar"
+                style="?android:attr/progressBarStyleLarge"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                style="?android:attr/progressBarStyleLarge"
                 android:elevation="10dp"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </RelativeLayout>
     </LinearLayout>
 </ScrollView>

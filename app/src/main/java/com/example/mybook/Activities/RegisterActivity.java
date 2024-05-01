@@ -1,4 +1,4 @@
-package com.example.mybook;
+package com.example.mybook.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,12 +10,14 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.mybook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -23,21 +25,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 
-import java.util.regex.Pattern;
-
 public class RegisterActivity extends AppCompatActivity {
     private EditText editTextRegisterEmail,editTextRegisterPwd,editTextRegisterName;
     private ProgressBar progressBar;
     private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        
+        Window w = getWindow();
+        w.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         getSupportActionBar().setTitle("Sign up");
 
         findViews();
         showHidePwd();
+
         Button ButtonRegister = findViewById(R.id.button_register);
         ButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,8 +89,11 @@ public class RegisterActivity extends AppCompatActivity {
                     if(firebaseUser != null){
                         //Update Display Name of the user
                         UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder().setDisplayName(textName).build();
+                        firebaseUser.updateProfile(profileUpdates);
+
+                        Toast.makeText(RegisterActivity.this, "Registration Succesfull", Toast.LENGTH_SHORT).show();
                         //Open UserProfile after user is created
-                        Intent userProfileActivity = new Intent(RegisterActivity.this, UserProfileActivity.class);
+                        Intent userProfileActivity = new Intent(RegisterActivity.this, Home.class);
                         //Stop user from going back to Register Activity on pressing back button
                         userProfileActivity.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(userProfileActivity);
@@ -95,11 +101,8 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 } else {
                     //Handle exceptions
-                    try {
-                        throw task.getException();
-                    } catch (Exception e) {
-                        Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
+                    try {throw task.getException();}
+                    catch (Exception e) {Toast.makeText(RegisterActivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();}
                     progressBar.setVisibility(View.GONE);
                 }
             }
@@ -126,6 +129,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void findViews() {
+
         editTextRegisterEmail = findViewById(R.id.editText_register_email);
         editTextRegisterPwd = findViewById(R.id.editText_register_pwd);
         editTextRegisterName = findViewById(R.id.editText_register_name);

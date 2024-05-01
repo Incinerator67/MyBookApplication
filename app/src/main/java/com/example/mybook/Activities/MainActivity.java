@@ -1,4 +1,4 @@
-package com.example.mybook;
+package com.example.mybook.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.util.Patterns;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.Button;
 import android.view.View;
@@ -18,6 +18,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mybook.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,12 +32,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        Window w = getWindow();
+        w.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         getSupportActionBar().setTitle("Login");
 
-        editTextLoginEmail = findViewById(R.id.editText_login_email);
-        editTextLoginPwd = findViewById(R.id.editText_login_pwd);
-        progressBar =findViewById(R.id.ProgressBar);
+        findViews();
         showHidePassword();
 
         //Register User
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Login Succesful",Toast.LENGTH_SHORT).show();
-                    Intent userProfileActivity = new Intent(MainActivity.this,UserProfileActivity.class);
+                    Intent userProfileActivity = new Intent(MainActivity.this, Home.class);
                     startActivity(userProfileActivity);
                 } else {
                     try {throw task.getException();}
@@ -111,7 +111,12 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
+    private void findViews() {
+        editTextLoginEmail = findViewById(R.id.editText_login_email);
+        editTextLoginPwd = findViewById(R.id.editText_login_pwd);
+        progressBar = findViewById(R.id.ProgressBar);
+    }
+
 }
 

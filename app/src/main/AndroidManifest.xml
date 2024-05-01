@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,14 +19,25 @@
         android:theme="@style/Theme.MyBook"
         tools:targetApi="34">
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".PdfModel.PdfActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
-            android:exported="false" />
+            android:name=".Activities.Home"
+            android:exported="false"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.MyBook.NoActionBar" />
+        <activity android:name=".ui.books.BookFragment" />
+        <activity android:name=".ui.favorites.FavoritesFragment" />
+        <activity android:name=".ui.wanttoread.WantToReadFragment" />
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name=".Activities.RegisterActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Activities.MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
